@@ -1,0 +1,29 @@
+.value-box {
+  min-width: 7rem;
+  border: 1px solid purple;
+  border-radius: 25px;
+  padding: 1px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.value {
+  color: purple;
+  flex-grow: 1;
+  padding-right: 5px;
+}
+.clear-btn {
+  background: none;
+  color: purple;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.25em;
+}
+
+.clear-btn:focus,
+.clear-btn:hover {
+  color: rgb(76, 1, 76);
+}

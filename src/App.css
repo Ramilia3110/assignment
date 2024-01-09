@@ -1,0 +1,31 @@
+.App {
+  padding: 2rem;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter-box {
+  width: 80vw;
+
+  padding: 1rem;
+  min-height: 5vh;
+}
+
+.container {
+  padding: 2rem 0;
+  width: 80vw;
+  margin: 0 auto;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-rows: auto;
+  justify-items: flex-start;
+  gap: 0.5rem; */
+}
+.see-all {
+  float: right;
+  background-color: transparent;
+  border: none;
+  color: purple;
+}

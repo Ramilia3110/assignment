@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.value-box {
+  min-width: 7rem;
+  border: 1px solid purple;
+  border-radius: 25px;
+  padding: 1px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.value {
+  color: purple;
+  flex-grow: 1;
+  padding-right: 5px;
+}
+.clear-btn {
+  background: none;
+  color: purple;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1.25em;
+}
+
+.clear-btn:focus,
+.clear-btn:hover {
+  color: rgb(76, 1, 76);
+}
+
+.select {
+  position: relative;
+
+  max-width: 10rem;
+}
+
+.caret {
+  color: #777;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  border: 1px solid #777;
+  padding: 0 7px;
+  border-radius: 25px;
+  height: 28px;
+}
+
+.options {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  max-height: 15em;
+  overflow-y: auto;
+  border: 0.05em solid #777;
+  border-radius: 0.25em;
+  width: 100%;
+  left: 0;
+  top: calc(100% + 0.25em);
+  background-color: white;
+  z-index: 100;
+}
+
+.options.show {
+  display: block;
+}
+
+.option {
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+
+.option.selected {
+  background-color: hsl(200, 100%, 70%);
+}
+
+.option.highlighted {
+  background-color: hsl(260, 75%, 62%);
+  color: white;
+}
