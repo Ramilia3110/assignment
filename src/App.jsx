@@ -15,38 +15,40 @@ function App() {
   const [isFiltered, setIsFiltered] = useState(false);
 
   //Options for Filter by Site
-
   const objectsArray = [...new Set(items.map((item) => item.sites[0].title))];
   const options = objectsArray.map((word) => ({
     title: word,
     slug: word.toLowerCase(),
   }));
 
+  //Monitoring filter
   const handleMonitoring = (isChecked) => {
-    setIsMonitoring(isChecked);
-    handleMonitoringFilter();
+    setIsMonitoring((prevIsMonitoring) => {
+      const newIsMonitoring = !prevIsMonitoring;
+      handleMonitoringFilter(newIsMonitoring);
+      return newIsMonitoring;
+    });
   };
 
-  function handleMonitoringFilter() {
-    if (isMonitoring) {
-      // If monitoring is enabled, filter items based on monitoring criteria
-      const monitoringData = items.filter(
-        (item) =>
-          item.shortDescription.includes("monitor") ||
-          item.title.includes("monitor")
-      );
+  function handleMonitoringFilter(newIsMonitoring) {
+    let updatedFilteredItems = [];
 
-      // Set the filtered items to state
-      setFilteredItems(monitoringData);
+    if (newIsMonitoring) {
+      const lowercaseKeyword = "monitor".toLowerCase();
+      updatedFilteredItems = items.filter((item) =>
+        item.title.toLowerCase().includes(lowercaseKeyword)
+      );
     } else {
-      // If monitoring is not enabled, set filteredItems to the original items or an empty array
-      setFilteredItems(showAllItems ? items : []);
+      updatedFilteredItems = showAllItems ? items : [];
     }
 
-    // Update isFiltered based on whether there are filtered items or not
-    setIsFiltered(filteredItems.length > 0);
+    setIsFiltered(updatedFilteredItems.length > 0);
+    setFilteredItems(updatedFilteredItems);
+    setMonitoring(updatedFilteredItems);
+    console.log(updatedFilteredItems);
   }
 
+  //Extracting filter
   const handleExtracting = (isChecked) => {
     setExtracting(isChecked);
     handleExtractingFilter();
@@ -54,39 +56,28 @@ function App() {
 
   function handleExtractingFilter() {
     if (extracting) {
-      // Use a separate variable to hold the extracted data
       const extractedData = filteredItems.filter((item) => {
-        return (
-          item.shortDescription.includes("extract") ||
-          item.title.includes("extract")
-        );
+        return item.title.toLowerCase().includes("extract");
       });
 
-      // Set the extracted data to state
       setFilteredItems(extractedData);
     } else {
-      // If not extracting, store the extracted items
       const extractedItems = items.filter((item) => {
-        return (
-          item.shortDescription.includes("extract") ||
-          item.title.includes("extract")
-        );
+        return item.title.toLowerCase().includes("extract");
       });
       setExtracted(extractedItems);
 
-      // Set filteredItems to the original items or an empty array, depending on your logic
       setFilteredItems(showAllItems ? items : []);
     }
   }
 
+  //Single select
   const handleSingleFilterChange = (selectedSingleTitle) => {
     let filteredData = [];
 
     if (selectedSingleTitle) {
-      // If there are already filtered items, filter through them
       const itemsToFilter = filteredItems.length > 0 ? filteredItems : items;
 
-      // Filter items based on selected title
       filteredData = itemsToFilter.filter((item) => {
         return item.categories.some((category) => {
           return category.title.includes(selectedSingleTitle);
@@ -94,13 +85,13 @@ function App() {
       });
     }
 
-    setIsFiltered(filteredData.length > 0); // Set isFiltered based on whether there are filtered items or not
+    setIsFiltered(filteredData.length > 0);
     setFilteredItems(filteredData);
   };
+
   //Multiselect filter function
   const handleFilterChange = (selectedTitles) => {
     if (!selectedTitles || selectedTitles.length === 0) {
-      // If no selected titles, show all items
       setIsFiltered(false);
       setFilteredItems(showAllItems ? items : []);
       return;

@@ -30,7 +30,7 @@
 
 .clear-btn:focus,
 .clear-btn:hover {
-  color: rgb(76, 1, 76);
+  color: rgb(217, 212, 217);
 }
 
 .select {
@@ -81,6 +81,5 @@
 }
 
 .option.highlighted {
-  background-color: hsl(260, 75%, 62%);
-  color: white;
+  background-color: hsl(300, 2%, 92%);
 }

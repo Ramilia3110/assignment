@@ -21,15 +21,17 @@ This React application serves as a dashboard for managing one-click automations.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/one-click-automations-dashboard.git](https://github.com/Ramilia3110/assignment.git
+   (https://github.com/Ramilia3110/assignment.git
 
    cd assignment
    npm install
    npm run dev
+   ```
 
 Data Source
 
 The automation data is provided through a jsonData module located in the data directory. The data includes one-click automations with details such as titles, categories, sites, descriptions, etc.
+
 # React + Vite
 
 Dependencies:
@@ -45,4 +47,5 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
 # assignment
