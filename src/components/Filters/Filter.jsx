@@ -73,7 +73,7 @@ const Filter = ({
   }, [singleselectValue, onFilterChangeSingle]);
 
   return (
-    <div className={styles.container} id="scrollContainer">
+    <div className={styles.wrapper}>
       {showScrollButtons && (
         <button
           className={`${styles["scroll-btn"]} ${styles["left-btn"]}`}
@@ -82,41 +82,43 @@ const Filter = ({
           <FaArrowLeft />
         </button>
       )}
-      <button
-        className={`${styles.extracting} ${
-          extracting ? styles.extractingActive : ""
-        }`}
-        onClick={handleExtractingChange}
-      >
-        <span>
-          <LuArrowDownUp />
-        </span>
-        <span> Extract Data</span>
-      </button>
-      <button
-        className={`${styles.extracting} ${
-          monitoring ? styles.extractingActive : ""
-        }`}
-        onClick={handleMontoringChange}
-      >
-        <span>
-          <PiMonitorBold />
-        </span>
-        <span> Monitoring</span>
-      </button>
+      <div className={styles.container} id="scrollContainer">
+        <button
+          className={`${styles.extracting} ${
+            extracting ? styles.extractingActive : ""
+          }`}
+          onClick={handleExtractingChange}
+        >
+          <span>
+            <LuArrowDownUp />
+          </span>
+          <span> Extract Data</span>
+        </button>
+        <button
+          className={`${styles.extracting} ${
+            monitoring ? styles.extractingActive : ""
+          }`}
+          onClick={handleMontoringChange}
+        >
+          <span>
+            <PiMonitorBold />
+          </span>
+          <span> Monitoring</span>
+        </button>
 
-      <Value multiple value={value} onChange={(o) => setValue(o)} />
-      <Select
-        options={options1}
-        onChange={(o) => setSingleselectValue(o)}
-        value={singleselectValue}
-      />
-      <MultiselectSearch
-        multiple
-        options={options}
-        value={value}
-        onChange={(o) => setValue(o)}
-      />
+        <Value multiple value={value} onChange={(o) => setValue(o)} />
+        <Select
+          options={options1}
+          onChange={(o) => setSingleselectValue(o)}
+          value={singleselectValue}
+        />
+        <MultiselectSearch
+          multiple
+          options={options}
+          value={value}
+          onChange={(o) => setValue(o)}
+        />
+      </div>
       {showScrollButtons && (
         <button
           className={`${styles["scroll-btn"]} ${styles["right-btn"]}`}

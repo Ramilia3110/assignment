@@ -1,3 +1,22 @@
+.wrapper {
+  position: relative;
+}
+
+.scroll-btn {
+  position: fixed;
+  top: 18%;
+  border-radius: 50%;
+  border: none;
+  height: 25px;
+}
+
+.left-btn {
+  left: 5%;
+}
+
+.right-btn {
+  right: 9%;
+}
 .container {
   display: flex;
   align-items: center;
