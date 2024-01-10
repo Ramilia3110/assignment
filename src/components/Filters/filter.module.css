@@ -1,13 +1,19 @@
 .container {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   justify-content: flex-start;
   width: 100%;
   white-space: nowrap;
   gap: 10px;
-  position: relative;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.container::-webkit-scrollbar {
+  display: none;
+}
+
 .filtertag {
   color: pink;
   font-size: 1rem;

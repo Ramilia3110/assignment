@@ -30,12 +30,10 @@
 
 .clear-btn:focus,
 .clear-btn:hover {
-  color: rgb(217, 212, 217);
+  color: rgb(76, 1, 76);
 }
 
 .select {
-  position: relative;
-
   max-width: 10rem;
 }
 
@@ -53,22 +51,29 @@
 .options {
   position: absolute;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   list-style: none;
   display: none;
-  max-height: 15em;
+  max-height: 25em;
   overflow-y: auto;
-  border: 0.05em solid #777;
+  font-size: 0.8em;
+  text-align: left;
   border-radius: 0.25em;
   width: 100%;
-  left: 0;
-  top: calc(100% + 0.25em);
-  background-color: white;
-  z-index: 100;
+  min-width: 8rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-width: 10rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .options.show {
   display: block;
+  max-height: 200px;
+  opacity: 1;
+  animation: fadeIn 0.5s ease;
 }
 
 .option {
@@ -81,5 +86,15 @@
 }
 
 .option.highlighted {
-  background-color: hsl(300, 2%, 92%);
+  background-color: hsl(0, 0%, 77%);
+  color: rgb(26, 26, 26);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

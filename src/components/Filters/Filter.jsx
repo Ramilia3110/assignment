@@ -5,6 +5,8 @@ import { Value } from "../Value/Value";
 import styles from "./filter.module.css";
 import { LuArrowDownUp } from "react-icons/lu";
 import { PiMonitorBold } from "react-icons/pi";
+import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const options1 = [
   { title: "Competitive Intelligence", slug: "competitive-intelligence" },
@@ -22,39 +24,64 @@ const Filter = ({
   const [extracting, setExtracting] = useState(false);
   const [monitoring, setMonitoring] = useState(false);
   const [singleselectValue, setSingleselectValue] = useState();
+  const [showScrollButtons, setShowScrollButtons] = useState(false);
 
+  //handle extract
   const handleExtractingChange = () => {
-    // Toggle the checkbox value and call the onExtract function
     setExtracting((prevValue) => !prevValue);
     onExtract(!extracting);
   };
+
+  //handle monitoring
   const handleMontoringChange = () => {
-    // Toggle the checkbox value and call the onExtract function
     setMonitoring((prevValue) => !prevValue);
     onMonitoring(!monitoring);
   };
 
+  //handle scrolling filter container
+
+  const handleScroll = (direction) => {
+    const container = document.getElementById("scrollContainer");
+    if (container) {
+      const scrollAmount = direction === "left" ? -200 : 200;
+      container.scrollLeft += scrollAmount;
+    }
+  };
+
+  useEffect(() => {
+    const container = document.getElementById("scrollContainer");
+    if (container) {
+      setShowScrollButtons(container.scrollWidth > container.clientWidth);
+    }
+  }, [value]);
+
   useEffect(() => {
     if (value) {
-      // Extract titles from selected options
       const selectedTitles = value.map((option) => option.title);
-      // Pass the titles to the parent component
+
       onFilterChange(selectedTitles);
     }
   }, [value, onFilterChange]);
 
   useEffect(() => {
     if (singleselectValue) {
-      // Extract titles from selected options
       const selectedSingleTitle = singleselectValue.title;
-      // Pass the titles to the parent component
+
       onFilterChangeSingle(selectedSingleTitle);
       console.log(selectedSingleTitle);
     }
   }, [singleselectValue, onFilterChangeSingle]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="scrollContainer">
+      {showScrollButtons && (
+        <button
+          className={`${styles["scroll-btn"]} ${styles["left-btn"]}`}
+          onClick={() => handleScroll("left")}
+        >
+          <FaArrowLeft />
+        </button>
+      )}
       <button
         className={`${styles.extracting} ${
           extracting ? styles.extractingActive : ""
@@ -90,6 +117,14 @@ const Filter = ({
         value={value}
         onChange={(o) => setValue(o)}
       />
+      {showScrollButtons && (
+        <button
+          className={`${styles["scroll-btn"]} ${styles["right-btn"]}`}
+          onClick={() => handleScroll("right")}
+        >
+          <FaArrowRight />
+        </button>
+      )}
     </div>
   );
 };
